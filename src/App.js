@@ -2,6 +2,7 @@ import React from 'react';
 import UseState from './hooks/UseState';
 import UseEffect from './hooks/UseEffect';
 import SearchForRepos from './hooks/CustomHooks';
+import FancyTodosApp from './hooks/FancyTodos';
 
 export default () => (
   <div
@@ -15,5 +16,6 @@ export default () => (
     <UseState />
     <UseEffect />
     <SearchForRepos />
+    <FancyTodosApp />
   </div>
 );
