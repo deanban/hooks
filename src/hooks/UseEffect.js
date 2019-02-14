@@ -91,20 +91,27 @@ function UseEffectFunction(props) {
   const { project } = props;
   const [timeOnProject, setTimeOnProject] = React.useState(0);
 
-  React.useEffect(() => {
-    FakeAPI.subscribeToApi(timeOnProject => {
-      setTimeOnProject(timeOnProject);
-    });
-    return () => {
-      FakeAPI.unSubscribeFromApi();
-      setTimeOnProject(0);
-    };
-  }, [project]);
+  React.useEffect(
+    //first argument is the effect that has to run first
+    () => {
+      FakeAPI.subscribeToApi(timeOnProject => {
+        setTimeOnProject(timeOnProject);
+      });
+      //cleanup
+      return () => {
+        FakeAPI.unSubscribeFromApi();
+        setTimeOnProject(0);
+      };
+    },
+    [project]
+  );
 
   return (
     <div>
       <h2>Project: {project}</h2>
       <h3>Time on Project: {timeOnProject}</h3>
+      <br />
+      <hr />
     </div>
   );
 }
